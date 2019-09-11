@@ -14,6 +14,13 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+
 dependencies {
     implementation "com.alibaba:fastjson:${fastjson}"
     implementation("org.springframework.boot:spring-boot-autoconfigure:${spring_boot}")
@@ -22,6 +29,7 @@ dependencies {
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor:${spring_boot}")
 
     compileOnly "org.projectlombok:lombok:${lombok}"
+    annotationProcessor "org.projectlombok:lombok:${lombok}"
     compileOnly "com.aliyun:aliyun-java-sdk-sts:${aliyun_java_sdk_sts}"
     compileOnly "com.aliyun:aliyun-java-sdk-core:${aliyun_java_sdk_core}"
 }

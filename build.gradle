@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id "maven"
+    id "maven-publish"
 }
 
 // 统一管理版本
