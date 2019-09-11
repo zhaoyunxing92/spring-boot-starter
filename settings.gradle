@@ -1,0 +1,3 @@
+rootProject.name = 'sunny-spring-boot-starter'
+include 'oss-spring-boot-starter'
+

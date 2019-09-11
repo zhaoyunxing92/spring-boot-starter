@@ -1,0 +1,105 @@
+{
+  "groups": [
+    {
+      "name": "oss.sts",
+      "type": "io.github.xyz.spring.boot.oss.config.OssStsConfig",
+      "sourceType": "io.github.xyz.spring.boot.oss.config.OssStsConfig"
+    },
+    {
+      "name": "oss.sts.policy",
+      "type": "io.github.xyz.spring.boot.oss.entity.Policy",
+      "sourceType": "io.github.xyz.spring.boot.oss.entity.Policy"
+    },
+    {
+      "name": "oss.sts.policy.statement",
+      "type": "io.github.xyz.spring.boot.oss.entity.Statement",
+      "sourceType": "io.github.xyz.spring.boot.oss.entity.Statement"
+    }
+  ],
+  "properties": [
+    {
+      "name": "oss.sts.access-key-id",
+      "type": "java.lang.String",
+      "description": "子账号AK信息",
+      "sourceType": "io.github.xyz.spring.boot.oss.config.OssStsConfig"
+    },
+    {
+      "name": "oss.sts.access-key-secret",
+      "type": "java.lang.String",
+      "description": "子账号AK信息",
+      "sourceType": "io.github.xyz.spring.boot.oss.config.OssStsConfig"
+    },
+    {
+      "name": "oss.sts.duration-seconds",
+      "type": "java.lang.Long",
+      "description": "设置临时凭证的有效期，单位是s，最小为900，最大为3600.默认值1000",
+      "sourceType": "io.github.xyz.spring.boot.oss.config.OssStsConfig",
+      "defaultValue": 1000
+    },
+    {
+      "name": "oss.sts.enable",
+      "type": "java.lang.Boolean",
+      "description": "是否启用sts，默认启用",
+      "sourceType": "io.github.xyz.spring.boot.oss.config.OssStsConfig",
+      "defaultValue": true
+    },
+    {
+      "name": "oss.sts.endpoint",
+      "type": "java.lang.String",
+      "description": "STS服务的所有接入地址，每个地址的功能都相同，请尽量在同区域进行调用.默认值:sts.cn-hangzhou.aliyuncs.com.",
+      "sourceType": "io.github.xyz.spring.boot.oss.config.OssStsConfig",
+      "defaultValue": "sts.cn-hangzhou.aliyuncs.com"
+    },
+    {
+      "name": "oss.sts.policy",
+      "type": "io.github.xyz.spring.boot.oss.entity.Policy",
+      "description": "这里传入的Policy是用来限制扮演角色之后的临时凭证的权限。临时凭证最后获得的权限是角色的权限和这里传入的Policy的交集。若policy为空，则用户将获得该角色下所有权限.",
+      "sourceType": "io.github.xyz.spring.boot.oss.config.OssStsConfig"
+    },
+    {
+      "name": "oss.sts.policy.statement",
+      "type": "java.util.List<io.github.xyz.spring.boot.oss.entity.Statement>",
+      "description": "通过Statement描述授权语义，",
+      "sourceType": "io.github.xyz.spring.boot.oss.entity.Policy"
+    },
+    {
+      "name": "oss.sts.policy.statement.action",
+      "type": "java.util.List<java.lang.String>",
+      "description": "Action 分为三大类： <ul> <li> Service 级别操作，对应的是 GetService 操作，用来列出所有属于该用户的 Bucket 列表。 <li> Bucket 级别操作，对应类似于 oss:PutBucketAcl、oss:GetBucketLocation之类的操作，操作的对象是 Bucket，它们的名称和相应的接口名称一一对应。 <li> Object 级别操作，分为 oss:GetObject、oss:PutObject、oss:DeleteObject和oss:AbortMultipartUpload，操作对象是 Object。 <\/ul>",
+      "sourceType": "io.github.xyz.spring.boot.oss.entity.Statement"
+    },
+    {
+      "name": "oss.sts.policy.statement.effect",
+      "type": "java.lang.String",
+      "description": "Effect 代表本条的Statement的授权的结果，分为 Allow 和 Deny，分别指代通过和禁止。多条 Statement 同时匹配成功时，禁止（Deny）的优先级更高。默认是Allow",
+      "sourceType": "io.github.xyz.spring.boot.oss.entity.Statement",
+      "defaultValue": "Allow"
+    },
+    {
+      "name": "oss.sts.policy.statement.resource",
+      "type": "java.util.List<java.lang.String>",
+      "description": "Resource 指代的是 OSS 上面的某个具体的资源或者某些资源（支持*通配），resource的规则是acs:oss:{region}:{bucket_owner}:{bucket_name}\/{object_name}。对于所有 Bucket 级别的操作来说不需要最后的斜杠和{object_name}，即acs:oss:{region}:{bucket_owner}:{bucket_name}。Resource 也是一个列表，可以有多个 Resource。其中的 region 字段暂时不做支持，设置为*。",
+      "sourceType": "io.github.xyz.spring.boot.oss.entity.Statement"
+    },
+    {
+      "name": "oss.sts.policy.version",
+      "type": "java.lang.String",
+      "description": "Version定义了Policy的版本",
+      "sourceType": "io.github.xyz.spring.boot.oss.entity.Policy",
+      "defaultValue": "1.0"
+    },
+    {
+      "name": "oss.sts.role-arn",
+      "type": "java.lang.String",
+      "description": "RAM角色的全局资源描述符,格式：acs:ram::$accountID:role\/$roleName.",
+      "sourceType": "io.github.xyz.spring.boot.oss.config.OssStsConfig"
+    },
+    {
+      "name": "oss.sts.role-session-name",
+      "type": "java.lang.String",
+      "description": "用来标识临时凭证的名称，建议使用不同的应用程序用户来区分.",
+      "sourceType": "io.github.xyz.spring.boot.oss.config.OssStsConfig"
+    }
+  ],
+  "hints": []
+}

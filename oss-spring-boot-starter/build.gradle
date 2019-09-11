@@ -1,0 +1,27 @@
+plugins {
+//    id 'org.springframework.boot' version '2.1.0.RELEASE'
+//    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
+}
+
+group 'io.github.sunny'
+version '1.0'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "com.alibaba:fastjson:${fastjson}"
+    implementation("org.springframework.boot:spring-boot-autoconfigure:${spring_boot}")
+    implementation("javax.validation:validation-api:${validation}")
+    implementation("org.hibernate.validator:hibernate-validator:${hibernater_validator}")
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor:${spring_boot}")
+
+    compileOnly "org.projectlombok:lombok:${lombok}"
+    compileOnly "com.aliyun:aliyun-java-sdk-sts:${aliyun_java_sdk_sts}"
+    compileOnly "com.aliyun:aliyun-java-sdk-core:${aliyun_java_sdk_core}"
+}
