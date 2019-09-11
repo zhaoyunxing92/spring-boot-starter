@@ -4,7 +4,7 @@
 
 ### starter开发进度
 
--[x] oss-spring-boot-starter
+- [x] oss-spring-boot-starter
 
 
 ### gradle 依赖规则
