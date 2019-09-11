@@ -12,7 +12,7 @@ import lombok.Data;
  * @desc:
  */
 @Data
-public class OssStsInfo {
+public class OssSts {
 
     @JSONField(name = "AccessKeyId")
     private String accessKeyId;

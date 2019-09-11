@@ -20,9 +20,9 @@ import org.springframework.context.annotation.Configuration;
  * @date: 2019-09-11 15:38
  */
 @Configuration
+@ConditionalOnProperty(prefix = "oss.sts", name = "enable", havingValue = "true", matchIfMissing = true)
 @ConditionalOnClass(AssumeRoleResponseUnmarshaller.class)
 @EnableConfigurationProperties(OssStsProperties.class)
-@ConditionalOnProperty(prefix = "oss.sts", name = "enabled", havingValue = "true", matchIfMissing = true)
 public class OssStsAutoConfiguration {
 
     private final OssStsProperties ossStsProperties;

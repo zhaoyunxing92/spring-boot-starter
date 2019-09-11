@@ -36,7 +36,7 @@ public class OssStsProperties {
     /**
      * 是否启用sts，默认启用
      */
-    private Boolean enable = true;
+    private Boolean enable;
     /**
      * STS服务的所有接入地址，每个地址的功能都相同，请尽量在同区域进行调用.默认值:sts.cn-hangzhou.aliyuncs.com.
      */

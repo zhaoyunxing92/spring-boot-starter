@@ -12,7 +12,8 @@ import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
 import io.github.sunny.spring.boot.config.OssStsProperties;
-import io.github.sunny.spring.boot.entity.OssStsInfo;
+import io.github.sunny.spring.boot.entity.OssSts;
+import io.github.sunny.spring.boot.entity.Policy;
 
 /**
  * @author zhaoyunxing
@@ -27,8 +28,13 @@ public class OssStsService {
         this.ossStsProperties = ossStsProperties;
     }
 
-    public OssStsInfo buid() {
-        OssStsInfo osi = new OssStsInfo();
+    /**
+     * 获取sts token
+     *
+     * @return {@link OssSts}
+     */
+    public OssSts getSecurityToken() {
+        OssSts osi = new OssSts();
         try {
             // 添加endpoint（直接使用STS endpoint，前两个参数留空，无需添加region ID）
             DefaultProfile.addEndpoint("", "", "Sts", ossStsProperties.getEndpoint());
@@ -41,7 +47,8 @@ public class OssStsService {
             request.setRoleArn(ossStsProperties.getRoleArn());
             request.setRoleSessionName(ossStsProperties.getRoleSessionName());
             // 若policy为空，则用户将获得该角色下所有权限
-            request.setPolicy(JSONObject.toJSONString(ossStsProperties.getPolicy()));
+            Policy policy = ossStsProperties.getPolicy();
+            request.setPolicy(null == policy ? null : JSONObject.toJSONString(policy));
             // 设置凭证有效时间
             request.setDurationSeconds(ossStsProperties.getDurationSeconds());
 
@@ -49,7 +56,6 @@ public class OssStsService {
             //        statement
             osi.setCode("200");
             osi.setMessage("获取sts成功");
-
             AssumeRoleResponse.Credentials credentials = response.getCredentials();
 
             osi.setAccessKeyId(credentials.getAccessKeyId());
