@@ -28,6 +28,11 @@ public class OssServiceImpl implements OssService {
         this.ossProperties = ossProperties;
     }
 
+    /**
+     * 后端签名
+     *
+     * @return {@link Oss}
+     */
     @Override
     public String getSecurityToken() {
         Oss oss = new Oss();
@@ -51,7 +56,7 @@ public class OssServiceImpl implements OssService {
             String postSignature = client.calculatePostSignature(postPolicy);
 
             oss.setAccessKeyId(accessKeyId);
-            oss.setExpire( String.valueOf(expireEndTime / 1000));
+            oss.setExpire(String.valueOf(expireEndTime / 1000));
             oss.setHost(host);
             oss.setFilePrefix(filePrefix);
             oss.setPolicy(encodedPolicy);

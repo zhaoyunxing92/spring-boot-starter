@@ -10,12 +10,15 @@ import io.github.sunny.spring.boot.config.OssStsProperties;
 import io.github.sunny.spring.boot.service.OssService;
 import io.github.sunny.spring.boot.service.impl.OssServiceImpl;
 import io.github.sunny.spring.boot.service.impl.OssStsService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.logging.Logger;
 
 /**
  * oss sts自动注入bean
@@ -28,10 +31,12 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties({OssStsProperties.class, OssProperties.class})
 public class OssStsAutoConfiguration {
 
+    private static Logger log = Logger.getLogger(OssStsAutoConfiguration.class.toString());
     private final OssStsProperties ossStsProperties;
     private final OssProperties ossProperties;
 
     public OssStsAutoConfiguration(OssStsProperties ossStsProperties, OssProperties ossProperties) {
+        log.info("init oss starter version:" + OssStarterVersion.getVersion());
         this.ossStsProperties = ossStsProperties;
         this.ossProperties = ossProperties;
     }
