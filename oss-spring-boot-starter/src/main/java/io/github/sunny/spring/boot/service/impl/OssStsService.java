@@ -1,7 +1,7 @@
 /**
  * Copyright(C) 2019 Hangzhou zhaoyunxing Technology Co., Ltd. All rights reserved.
  */
-package io.github.sunny.spring.boot.service;
+package io.github.sunny.spring.boot.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.aliyuncs.DefaultAcsClient;
@@ -14,13 +14,16 @@ import com.aliyuncs.profile.IClientProfile;
 import io.github.sunny.spring.boot.config.OssStsProperties;
 import io.github.sunny.spring.boot.entity.OssSts;
 import io.github.sunny.spring.boot.entity.Policy;
+import io.github.sunny.spring.boot.service.OssService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * @author zhaoyunxing
- * @date: 2019-09-11 17:46
+ * @date: 2019-09-12 14:08
  * @desc:
  */
-public class OssStsService {
+public class OssStsService implements OssService {
 
     private final OssStsProperties ossStsProperties;
 
@@ -28,12 +31,8 @@ public class OssStsService {
         this.ossStsProperties = ossStsProperties;
     }
 
-    /**
-     * 获取sts token
-     *
-     * @return {@link OssSts}
-     */
-    public OssSts getSecurityToken() {
+    @Override
+    public String getStsSecurityToken() {
         OssSts osi = new OssSts();
         try {
             // 添加endpoint（直接使用STS endpoint，前两个参数留空，无需添加region ID）
@@ -64,11 +63,11 @@ public class OssStsService {
             osi.setSecurityToken(credentials.getSecurityToken());
             osi.setExpiration(credentials.getExpiration());
 
-        } catch (ClientException e) {
-            osi.setMessage(e.getErrMsg());
-            osi.setCode(e.getErrCode());
-            osi.setRequestId(e.getRequestId());
+        } catch (ClientException ex) {
+            osi.setMessage(ex.getErrMsg());
+            osi.setCode(ex.getErrCode());
+            osi.setRequestId(ex.getRequestId());
         }
-        return osi;
+        return JSONObject.toJSONString(osi);
     }
 }

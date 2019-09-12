@@ -5,14 +5,18 @@ package io.github.sunny.spring.boot.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import java.io.Serializable;
 
 /**
  * @author zhaoyunxing
  * @date: 2019-09-09 15:31
  * @desc:
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class OssSts {
+public class OssSts extends Response {
 
     @JSONField(name = "AccessKeyId")
     private String accessKeyId;
@@ -25,11 +29,4 @@ public class OssSts {
 
     @JSONField(name = "Expiration")
     private String expiration;
-
-    @JSONField(name = "StatusCode")
-    private String code;
-
-    private String requestId;
-
-    private String message;
 }

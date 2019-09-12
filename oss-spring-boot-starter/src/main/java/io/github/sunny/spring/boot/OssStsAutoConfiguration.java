@@ -5,7 +5,7 @@ package io.github.sunny.spring.boot;
 
 import com.aliyuncs.sts.transform.v20150401.AssumeRoleResponseUnmarshaller;
 import io.github.sunny.spring.boot.config.OssStsProperties;
-import io.github.sunny.spring.boot.service.OssStsService;
+import io.github.sunny.spring.boot.service.impl.OssStsService;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -20,7 +20,6 @@ import org.springframework.context.annotation.Configuration;
  * @date: 2019-09-11 15:38
  */
 @Configuration
-@ConditionalOnProperty(prefix = "oss.sts", name = "enable", havingValue = "true", matchIfMissing = true)
 @ConditionalOnClass(AssumeRoleResponseUnmarshaller.class)
 @EnableConfigurationProperties(OssStsProperties.class)
 public class OssStsAutoConfiguration {
@@ -31,6 +30,7 @@ public class OssStsAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
+    @ConditionalOnProperty(prefix = "oss.sts", name = "enable", havingValue = "true", matchIfMissing = true)
     public OssStsService ossStsService() {
         return new OssStsService(ossStsProperties);
     }
