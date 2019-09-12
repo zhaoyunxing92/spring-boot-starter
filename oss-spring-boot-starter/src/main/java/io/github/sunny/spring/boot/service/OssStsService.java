@@ -1,7 +1,7 @@
 /**
  * Copyright(C) 2019 Hangzhou zhaoyunxing Technology Co., Ltd. All rights reserved.
  */
-package io.github.sunny.spring.boot.service.impl;
+package io.github.sunny.spring.boot.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.aliyuncs.DefaultAcsClient;
@@ -14,16 +14,13 @@ import com.aliyuncs.profile.IClientProfile;
 import io.github.sunny.spring.boot.config.OssStsProperties;
 import io.github.sunny.spring.boot.entity.OssSts;
 import io.github.sunny.spring.boot.entity.Policy;
-import io.github.sunny.spring.boot.service.OssService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  * @author zhaoyunxing
  * @date: 2019-09-12 14:08
  * @desc:
  */
-public class OssStsService implements OssService {
+public class OssStsService {
 
     private final OssStsProperties ossStsProperties;
 
@@ -31,7 +28,11 @@ public class OssStsService implements OssService {
         this.ossStsProperties = ossStsProperties;
     }
 
-    @Override
+    /**
+     * 获取签名token
+     *
+     * @return
+     */
     public String getSecurityToken() {
         OssSts osi = new OssSts();
         try {
@@ -47,7 +48,7 @@ public class OssStsService implements OssService {
             request.setRoleSessionName(ossStsProperties.getRoleSessionName());
             // 若policy为空，则用户将获得该角色下所有权限
             Policy policy = ossStsProperties.getPolicy();
-            request.setPolicy(null == policy ? null : JSONObject.toJSONString(policy));
+            request.setPolicy(null == policy || null == policy.getStatement() ? null : JSONObject.toJSONString(policy));
             // 设置凭证有效时间
             request.setDurationSeconds(ossStsProperties.getDurationSeconds());
 

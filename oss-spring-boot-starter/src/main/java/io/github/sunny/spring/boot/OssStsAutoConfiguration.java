@@ -4,13 +4,12 @@
 package io.github.sunny.spring.boot;
 
 import com.aliyun.oss.OSS;
+import com.aliyuncs.OssAcsRequest;
 import com.aliyuncs.sts.transform.v20150401.AssumeRoleResponseUnmarshaller;
 import io.github.sunny.spring.boot.config.OssProperties;
 import io.github.sunny.spring.boot.config.OssStsProperties;
 import io.github.sunny.spring.boot.service.OssService;
-import io.github.sunny.spring.boot.service.impl.OssServiceImpl;
-import io.github.sunny.spring.boot.service.impl.OssStsService;
-import lombok.extern.slf4j.Slf4j;
+import io.github.sunny.spring.boot.service.OssStsService;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -27,7 +26,7 @@ import java.util.logging.Logger;
  * @date: 2019-09-11 15:38
  */
 @Configuration
-@ConditionalOnClass({AssumeRoleResponseUnmarshaller.class, OSS.class})
+@ConditionalOnClass(OssAcsRequest.class)
 @EnableConfigurationProperties({OssStsProperties.class, OssProperties.class})
 public class OssStsAutoConfiguration {
 
@@ -44,15 +43,17 @@ public class OssStsAutoConfiguration {
 
     @Bean("ossStsService")
     @ConditionalOnMissingBean
+    @ConditionalOnClass(AssumeRoleResponseUnmarshaller.class)
     @ConditionalOnProperty(prefix = "oss.sts", name = "enable", havingValue = "true", matchIfMissing = true)
-    public OssService ossStsService() {
+    public OssStsService ossStsService() {
         return new OssStsService(ossStsProperties);
     }
 
     @Bean("ossService")
     @ConditionalOnMissingBean
+    @ConditionalOnClass(OSS.class)
     @ConditionalOnProperty(prefix = "oss", name = "enable", havingValue = "true", matchIfMissing = true)
     public OssService ossService() {
-        return new OssServiceImpl(ossProperties);
+        return new OssService(ossProperties);
     }
 }

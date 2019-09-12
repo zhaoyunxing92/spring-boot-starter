@@ -1,9 +1,13 @@
 /home/sunny/code/java/spring-training-hall/sunny-spring-boot-starter/oss-spring-boot-starter/src/main/java/io/github/sunny/spring/boot/service/OssService.java
+/home/sunny/code/java/spring-training-hall/sunny-spring-boot-starter/oss-spring-boot-starter/src/main/java/io/github/sunny/spring/boot/service/impl/OssStsService.java
+/home/sunny/code/java/spring-training-hall/sunny-spring-boot-starter/oss-spring-boot-starter/src/main/java/io/github/sunny/spring/boot/entity/Statement.java
+/home/sunny/code/java/spring-training-hall/sunny-spring-boot-starter/oss-spring-boot-starter/src/main/java/io/github/sunny/spring/boot/config/OssProperties.java
+/home/sunny/code/java/spring-training-hall/sunny-spring-boot-starter/oss-spring-boot-starter/src/main/java/io/github/sunny/spring/boot/entity/Condition.java
+/home/sunny/code/java/spring-training-hall/sunny-spring-boot-starter/oss-spring-boot-starter/src/main/java/io/github/sunny/spring/boot/entity/Policy.java
+/home/sunny/code/java/spring-training-hall/sunny-spring-boot-starter/oss-spring-boot-starter/src/main/java/io/github/sunny/spring/boot/OssStarterVersion.java
+/home/sunny/code/java/spring-training-hall/sunny-spring-boot-starter/oss-spring-boot-starter/src/main/java/io/github/sunny/spring/boot/entity/Oss.java
 /home/sunny/code/java/spring-training-hall/sunny-spring-boot-starter/oss-spring-boot-starter/src/main/java/io/github/sunny/spring/boot/entity/Response.java
 /home/sunny/code/java/spring-training-hall/sunny-spring-boot-starter/oss-spring-boot-starter/src/main/java/io/github/sunny/spring/boot/entity/OssSts.java
 /home/sunny/code/java/spring-training-hall/sunny-spring-boot-starter/oss-spring-boot-starter/src/main/java/io/github/sunny/spring/boot/OssStsAutoConfiguration.java
-/home/sunny/code/java/spring-training-hall/sunny-spring-boot-starter/oss-spring-boot-starter/src/main/java/io/github/sunny/spring/boot/service/impl/OssStsService.java
-/home/sunny/code/java/spring-training-hall/sunny-spring-boot-starter/oss-spring-boot-starter/src/main/java/io/github/sunny/spring/boot/entity/Statement.java
-/home/sunny/code/java/spring-training-hall/sunny-spring-boot-starter/oss-spring-boot-starter/src/main/java/io/github/sunny/spring/boot/entity/Condition.java
+/home/sunny/code/java/spring-training-hall/sunny-spring-boot-starter/oss-spring-boot-starter/src/main/java/io/github/sunny/spring/boot/service/impl/OssServiceImpl.java
 /home/sunny/code/java/spring-training-hall/sunny-spring-boot-starter/oss-spring-boot-starter/src/main/java/io/github/sunny/spring/boot/config/OssStsProperties.java
-/home/sunny/code/java/spring-training-hall/sunny-spring-boot-starter/oss-spring-boot-starter/src/main/java/io/github/sunny/spring/boot/entity/Policy.java

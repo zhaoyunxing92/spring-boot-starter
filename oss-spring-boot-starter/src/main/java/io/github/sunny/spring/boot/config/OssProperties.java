@@ -68,7 +68,7 @@ public class OssProperties {
      */
     @NotNull(message = "请配置【durationSeconds】属性")
     @Range(min = 10, max = 60, message = "有效期必须在{min}~{max}之间")
-    private Long durationSeconds = 100L;
+    private Long durationSeconds = 10L;
 
     /**
      * bean初始化完成后进行参数验证

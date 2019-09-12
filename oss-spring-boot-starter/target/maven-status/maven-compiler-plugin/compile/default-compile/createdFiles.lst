@@ -1,3 +1,13 @@
-io/github/sunny/spring/boot/service/OssService.class
+io/github/sunny/spring/boot/config/OssProperties.class
+META-INF/spring-configuration-metadata.json
+io/github/sunny/spring/boot/config/OssStsProperties.class
+io/github/sunny/spring/boot/OssStsAutoConfiguration.class
 io/github/sunny/spring/boot/entity/Response.class
 io/github/sunny/spring/boot/service/impl/OssStsService.class
+io/github/sunny/spring/boot/service/impl/OssServiceImpl.class
+io/github/sunny/spring/boot/entity/Statement.class
+io/github/sunny/spring/boot/service/OssService.class
+io/github/sunny/spring/boot/OssStarterVersion.class
+io/github/sunny/spring/boot/entity/Policy.class
+io/github/sunny/spring/boot/entity/OssSts.class
+io/github/sunny/spring/boot/entity/Oss.class
