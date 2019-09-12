@@ -7,11 +7,13 @@ package io.github.sunny.spring.boot.config;
 import io.github.sunny.spring.boot.entity.Policy;
 import io.github.sunny.spring.boot.entity.Statement;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.util.Assert;
+
 
 import javax.annotation.PostConstruct;
 import javax.validation.ConstraintViolation;
@@ -32,7 +34,7 @@ import java.util.Set;
 @ToString
 @ConfigurationProperties(prefix = "oss.sts")
 @EnableConfigurationProperties({Statement.class, Policy.class})
-public class OssStsProperties {
+public class OssStsProperties{
     /**
      * 是否启用sts，默认启用
      */
@@ -64,11 +66,11 @@ public class OssStsProperties {
     private String roleSessionName;
 
     /**
-     * 设置临时凭证的有效期，单位是s，最小为900，最大为3600.默认值1000
+     * 设置临时凭证的有效期，单位是s，最小为900，最大为3600.默认值900
      */
     @NotNull(message = "请配置【durationSeconds】属性")
     @Range(min = 900, max = 3600, message = "有效期必须在{min}~{max}之间")
-    private Long durationSeconds = 1000L;
+    private Long durationSeconds = 900L;
 
     /**
      * 这里传入的Policy是用来限制扮演角色之后的临时凭证的权限。临时凭证最后获得的权限是角色的权限和这里传入的Policy的交集。若policy为空，则用户将获得该角色下所有权限.
@@ -86,6 +88,6 @@ public class OssStsProperties {
         Set<ConstraintViolation<OssStsProperties>> validators = validator.validate(this);
         //todo：validators.iterator().hasNext()这个必须判断下
         Iterator<ConstraintViolation<OssStsProperties>> iterator = validators.iterator();
-        Assert.isTrue(validators.isEmpty(), iterator.hasNext() ? iterator.next().getMessage() : "OssStsConfig参数验证不通过");
+        Assert.isTrue(validators.isEmpty(), iterator.hasNext() ? iterator.next().getMessage() : "OssStsProperties参数验证不通过");
     }
 }

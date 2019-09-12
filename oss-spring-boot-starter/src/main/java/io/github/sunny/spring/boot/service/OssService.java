@@ -16,5 +16,5 @@ public interface OssService {
      *
      * @return {@link OssSts}
      */
-    String getStsSecurityToken();
+    String getSecurityToken();
 }

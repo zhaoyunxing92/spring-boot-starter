@@ -3,8 +3,12 @@
  */
 package io.github.sunny.spring.boot;
 
+import com.aliyun.oss.OSS;
 import com.aliyuncs.sts.transform.v20150401.AssumeRoleResponseUnmarshaller;
+import io.github.sunny.spring.boot.config.OssProperties;
 import io.github.sunny.spring.boot.config.OssStsProperties;
+import io.github.sunny.spring.boot.service.OssService;
+import io.github.sunny.spring.boot.service.impl.OssServiceImpl;
 import io.github.sunny.spring.boot.service.impl.OssStsService;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -20,18 +24,30 @@ import org.springframework.context.annotation.Configuration;
  * @date: 2019-09-11 15:38
  */
 @Configuration
-@ConditionalOnClass(AssumeRoleResponseUnmarshaller.class)
-@EnableConfigurationProperties(OssStsProperties.class)
+@ConditionalOnClass({AssumeRoleResponseUnmarshaller.class, OSS.class})
+@EnableConfigurationProperties({OssStsProperties.class, OssProperties.class})
 public class OssStsAutoConfiguration {
 
     private final OssStsProperties ossStsProperties;
+    private final OssProperties ossProperties;
 
-    public OssStsAutoConfiguration(OssStsProperties ossStsProperties) {this.ossStsProperties = ossStsProperties;}
+    public OssStsAutoConfiguration(OssStsProperties ossStsProperties, OssProperties ossProperties) {
+        this.ossStsProperties = ossStsProperties;
+        this.ossProperties = ossProperties;
+    }
 
-    @Bean
+
+    @Bean("ossStsService")
     @ConditionalOnMissingBean
     @ConditionalOnProperty(prefix = "oss.sts", name = "enable", havingValue = "true", matchIfMissing = true)
-    public OssStsService ossStsService() {
+    public OssService ossStsService() {
         return new OssStsService(ossStsProperties);
+    }
+
+    @Bean("ossService")
+    @ConditionalOnMissingBean
+    @ConditionalOnProperty(prefix = "oss", name = "enable", havingValue = "true", matchIfMissing = true)
+    public OssService ossService() {
+        return new OssServiceImpl(ossProperties);
     }
 }

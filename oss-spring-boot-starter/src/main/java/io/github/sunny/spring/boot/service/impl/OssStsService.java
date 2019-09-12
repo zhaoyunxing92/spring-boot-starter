@@ -32,7 +32,7 @@ public class OssStsService implements OssService {
     }
 
     @Override
-    public String getStsSecurityToken() {
+    public String getSecurityToken() {
         OssSts osi = new OssSts();
         try {
             // 添加endpoint（直接使用STS endpoint，前两个参数留空，无需添加region ID）
