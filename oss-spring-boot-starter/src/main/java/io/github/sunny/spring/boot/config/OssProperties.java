@@ -7,17 +7,9 @@ import lombok.Data;
 import lombok.ToString;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.util.Assert;
 
-import javax.annotation.PostConstruct;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.Iterator;
-import java.util.Set;
 
 /**
  * @author zhaoyunxing
@@ -69,17 +61,4 @@ public class OssProperties {
     @NotNull(message = "请配置【durationSeconds】属性")
     @Range(min = 10, max = 60, message = "有效期必须在{min}~{max}之间")
     private Long durationSeconds = 10L;
-
-    /**
-     * bean初始化完成后进行参数验证
-     */
-    @PostConstruct
-    public void validator() {
-        // 参数验证
-        Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-        Set<ConstraintViolation<OssProperties>> validators = validator.validate(this);
-        //todo：validators.iterator().hasNext()这个必须判断下
-        Iterator<ConstraintViolation<OssProperties>> iterator = validators.iterator();
-        Assert.isTrue(validators.isEmpty(), iterator.hasNext() ? iterator.next().getMessage() : "OssProperties参数验证不通过");
-    }
 }

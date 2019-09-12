@@ -14,10 +14,18 @@ import lombok.Data;
 @Data
 public class Response {
 
+    @JSONField(name = "AccessKeyId")
+    private String accessKeyId;
+
     @JSONField(name = "StatusCode")
     private String code;
 
+    @JSONField(name = "RequestId")
     private String requestId;
 
+    @JSONField(name = "Message")
     private String message;
+
+    @JSONField(name = "Expiration")
+    private String expiration;
 }

@@ -18,8 +18,7 @@ import java.io.Serializable;
 @Data
 public class OssSts extends Response {
 
-    @JSONField(name = "AccessKeyId")
-    private String accessKeyId;
+
 
     @JSONField(name = "AccessKeySecret")
     private String accessKeySecret;
@@ -27,6 +26,4 @@ public class OssSts extends Response {
     @JSONField(name = "SecurityToken")
     private String securityToken;
 
-    @JSONField(name = "Expiration")
-    private String expiration;
 }

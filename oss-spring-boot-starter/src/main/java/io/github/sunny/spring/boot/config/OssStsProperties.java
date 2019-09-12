@@ -7,23 +7,14 @@ package io.github.sunny.spring.boot.config;
 import io.github.sunny.spring.boot.entity.Policy;
 import io.github.sunny.spring.boot.entity.Statement;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.util.Assert;
 
-
-import javax.annotation.PostConstruct;
-import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
-import javax.validation.Validation;
-import javax.validation.Validator;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.Iterator;
-import java.util.Set;
 
 /**
  * @author zhaoyunxing
@@ -77,17 +68,4 @@ public class OssStsProperties{
      */
     @Valid
     private Policy policy;
-
-    /**
-     * bean初始化完成后进行参数验证
-     */
-    @PostConstruct
-    public void validator() {
-        // 参数验证
-        Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-        Set<ConstraintViolation<OssStsProperties>> validators = validator.validate(this);
-        //todo：validators.iterator().hasNext()这个必须判断下
-        Iterator<ConstraintViolation<OssStsProperties>> iterator = validators.iterator();
-        Assert.isTrue(validators.isEmpty(), iterator.hasNext() ? iterator.next().getMessage() : "OssStsProperties参数验证不通过");
-    }
 }
