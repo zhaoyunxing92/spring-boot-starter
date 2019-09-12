@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.github.sunny</groupId>
         <artifactId>sunny-spring-boot-starter-parent</artifactId>
-        <version>1.0</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>oss-spring-boot-starter</artifactId>
