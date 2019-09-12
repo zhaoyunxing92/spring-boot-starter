@@ -142,5 +142,14 @@
             </plugin>
         </plugins>
     </build>
-
+    <distributionManagement>
+        <repository>
+            <id>ubi-repository</id>
+            <url>http://nexus.ccclubs.com:8081/repository/ubi-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>ubi-snapshots</id>
+            <url>http://nexus.ccclubs.com:8081/repository/ubi-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
