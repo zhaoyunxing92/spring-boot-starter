@@ -44,7 +44,7 @@ public class OssStsAutoConfiguration {
     }
 
     public OssStsAutoConfiguration(OssStsProperties ossStsProperties, OssProperties ossProperties) {
-        log.info("init oss starter version:" + OssStarterVersion.getVersion());
+        log.info("init " + OssStarterVersion.getName() + " version: " + OssStarterVersion.getVersion());
         this.ossStsProperties = ossStsProperties;
         this.ossProperties = ossProperties;
         // 参数验证
@@ -61,6 +61,6 @@ public class OssStsAutoConfiguration {
     @ConditionalOnMissingBean
     @ConditionalOnClass(OSS.class)
     public OssService ossService() {
-        return new OssService(ossProperties,ossStsProperties);
+        return new OssService(ossProperties, ossStsProperties);
     }
 }
